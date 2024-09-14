@@ -1,5 +1,5 @@
 import 'package:devmovel_lostandfound/account_page.dart';
-import 'package:devmovel_lostandfound/all_posts_page.dart';
+import 'package:devmovel_lostandfound/lost_items_screen.dart'; 
 import 'package:devmovel_lostandfound/create_post_page.dart';
 import 'package:devmovel_lostandfound/register_page.dart';
 import 'package:devmovel_lostandfound/search_post_page.dart';
@@ -41,8 +41,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   final _pageOptions = [
-    AllPostsPage(),
-    SearchPostPage(),
+    LostItemsScreen(),  
+    SearchScreen(),
     CreatePostPagePage(),
     AccountPage()
   ];
@@ -129,7 +129,7 @@ class _HomePageState extends State<HomePage> {
         onDestinationSelected: onItemTapped,
         destinations: const <Widget>[
           NavigationDestination(
-            icon: Icon(Icons.list),
+            icon: Icon(Icons.list),  // Ícone para a listagem
             label: 'All posts',
           ),
           NavigationDestination(
@@ -137,7 +137,6 @@ class _HomePageState extends State<HomePage> {
             label: 'Search post',
           ),
           NavigationDestination(
-            // selectedIcon: Icon(Icons.bookmark),
             icon: Icon(Icons.note_add),
             label: 'Create post',
           ),

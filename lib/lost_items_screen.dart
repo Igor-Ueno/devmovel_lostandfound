@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../services/retrofit_instance.dart';
+import '../services/posts_service.dart';
 import '../models/lost_item.dart';
+import '../widgets/lost_item_adapter.dart';
 
 class LostItemsScreen extends StatefulWidget {
   @override
@@ -8,34 +9,31 @@ class LostItemsScreen extends StatefulWidget {
 }
 
 class _LostItemsScreenState extends State<LostItemsScreen> {
-  final RetrofitInstance retrofitInstance = RetrofitInstance();
+  late Future<List<LostItem>> futureLostItems;
+
+  @override
+  void initState() {
+    super.initState();
+    futureLostItems = PostsService().getLostItems();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Itens Perdidos'),
+        title: Text('Todos os itens perdidos'),
       ),
       body: FutureBuilder<List<LostItem>>(
-        future: retrofitInstance.getLostItems(),
+        future: futureLostItems,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Center(child: Text('Erro ao carregar dados.'));
+            return Center(child: Text('Error: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('Nenhum item perdido encontrado.'));
+            return Center(child: Text('Nenhum item encontrado'));
           } else {
-            return ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                LostItem item = snapshot.data![index];
-                return ListTile(
-                  title: Text(item.title),
-                  subtitle: Text(item.description),
-                );
-              },
-            );
+            return LostItemAdapter(lostItems: snapshot.data!);
           }
         },
       ),

@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-import 'screens/lost_items_screen.dart';
+
+import 'app.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const App());
 }
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: LostItemsScreen(),
-    );
-  }
-}
+
