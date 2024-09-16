@@ -21,17 +21,19 @@ class _LostItemsScreenState extends State<LostItemsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Todos os itens perdidos'),
+        title: const Text('All posts'),
+        centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       body: FutureBuilder<List<LostItem>>(
         future: futureLostItems,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('Nenhum item encontrado'));
+            return const Center(child: Text('Nenhum item encontrado'));
           } else {
             return LostItemAdapter(lostItems: snapshot.data!);
           }

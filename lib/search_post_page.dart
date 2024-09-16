@@ -30,7 +30,7 @@ class _SearchScreenState extends State<SearchScreen> {
         isLoading = false; // Oculta o indicador de carregamento em caso de erro
       });
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Erro ao buscar itens: ${e.toString()}")),
+        SnackBar(content: Text("Error occurred when searching: ${e.toString()}")),
       );
     }
   }
@@ -39,7 +39,9 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Buscar Itens Perdidos'),
+        title: const Text('Search posts'),
+        automaticallyImplyLeading: false,
+        centerTitle: true,
       ),
       body: Column(
         children: [
@@ -49,8 +51,8 @@ class _SearchScreenState extends State<SearchScreen> {
             child: TextField(
               controller: searchController,
               decoration: InputDecoration(
-                hintText: 'Buscar itens...',
-                prefixIcon: Icon(Icons.search),
+                hintText: 'Find a post...',
+                prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -64,7 +66,7 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
           // Indicador de carregamento ou lista de resultados
           isLoading
-              ? Center(child: CircularProgressIndicator()) // Mostra o indicador enquanto carrega
+              ? const Center(child: CircularProgressIndicator()) // Mostra o indicador enquanto carrega
               : Expanded(
                   // Lista de itens perdidos encontrados
                   child: LostItemAdapter(lostItems: lostItems),
