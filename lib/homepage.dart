@@ -1,9 +1,7 @@
 import 'package:devmovel_lostandfound/account_page.dart';
 import 'package:devmovel_lostandfound/lost_items_screen.dart';
 import 'package:devmovel_lostandfound/create_post_page.dart';
-import 'package:devmovel_lostandfound/register_page.dart';
 import 'package:devmovel_lostandfound/search_post_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'generated/l10n.dart';
 
@@ -53,8 +51,9 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => signOut(),
-        child: Icon(Icons.logout_rounded),
-        backgroundColor: Colors.blue,
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.surface,
+        child: const Icon(Icons.logout_rounded),
       ),
       body: _pageOptions[currentPageIndex],
       bottomNavigationBar: NavigationBar(

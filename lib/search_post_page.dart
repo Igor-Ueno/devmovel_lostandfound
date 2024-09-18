@@ -65,7 +65,7 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
           // Indicador de carregamento ou lista de resultados
           isLoading
-              ? Center(child: CircularProgressIndicator()) // Mostra o indicador enquanto carrega
+              ? const Center(child: CircularProgressIndicator()) // Mostra o indicador enquanto carrega
               : Expanded(
                   // Lista de itens perdidos encontrados
                   child: LostItemAdapter(lostItems: lostItems),
