@@ -1,22 +1,12 @@
 import 'package:devmovel_lostandfound/account_page.dart';
-import 'package:devmovel_lostandfound/lost_items_screen.dart'; 
+import 'package:devmovel_lostandfound/lost_items_screen.dart';
 import 'package:devmovel_lostandfound/create_post_page.dart';
 import 'package:devmovel_lostandfound/search_post_page.dart';
 import 'package:flutter/material.dart';
-
-import 'login_page.dart';
+import 'generated/l10n.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -25,6 +15,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
   final _pageOptions = [
     LostItemsScreen(),  
     SearchScreen(),
@@ -47,10 +45,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-        // title: Text(widget.title),
-        // automaticallyImplyLeading: false
-      // ),
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(S.of(context).homePageTitle), // Usando a string localizada
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => signOut(),
         backgroundColor: Theme.of(context).colorScheme.primary,
@@ -62,22 +60,22 @@ class _HomePageState extends State<HomePage> {
         labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
         selectedIndex: currentPageIndex,
         onDestinationSelected: onItemTapped,
-        destinations: const <Widget>[
+        destinations: <Widget>[
           NavigationDestination(
             icon: Icon(Icons.list),
-            label: 'All posts',
+            label: S.of(context).allPosts, // Usando a string localizada
           ),
           NavigationDestination(
             icon: Icon(Icons.search),
-            label: 'Search posts',
+            label: S.of(context).searchPost, // Usando a string localizada
           ),
           NavigationDestination(
             icon: Icon(Icons.note_add),
-            label: 'Create post',
+            label: S.of(context).createPost, // Usando a string localizada
           ),
           NavigationDestination(
             icon: Icon(Icons.account_circle),
-            label: 'Account',
+            label: S.of(context).account, // Usando a string localizada
           ),
         ],
       ),

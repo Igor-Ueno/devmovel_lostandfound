@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'generated/l10n.dart'; // Importa a classe gerada para localização
 import '../services/posts_service.dart'; 
 import '../models/lost_item.dart';
 import '../widgets/lost_item_adapter.dart';
@@ -30,7 +31,7 @@ class _SearchScreenState extends State<SearchScreen> {
         isLoading = false; // Oculta o indicador de carregamento em caso de erro
       });
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Error occurred when searching: ${e.toString()}")),
+        SnackBar(content: Text(S.of(context).error_searching_items(e.toString()))),
       );
     }
   }
@@ -39,9 +40,7 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Search posts'),
-        automaticallyImplyLeading: false,
-        centerTitle: true,
+        title: Text(S.of(context).buscar_itens_perdidos),
       ),
       body: Column(
         children: [
@@ -51,8 +50,8 @@ class _SearchScreenState extends State<SearchScreen> {
             child: TextField(
               controller: searchController,
               decoration: InputDecoration(
-                hintText: 'Find a post...',
-                prefixIcon: const Icon(Icons.search),
+                hintText: S.of(context).buscar_itens,
+                prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
