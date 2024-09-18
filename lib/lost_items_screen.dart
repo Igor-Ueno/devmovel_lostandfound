@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'generated/l10n.dart';
 import '../services/posts_service.dart';
 import '../models/lost_item.dart';
 import '../widgets/lost_item_adapter.dart';
@@ -21,7 +22,7 @@ class _LostItemsScreenState extends State<LostItemsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Todos os itens perdidos'),
+        title: Text(S.of(context).todos_os_itens_perdidos),
       ),
       body: FutureBuilder<List<LostItem>>(
         future: futureLostItems,
@@ -31,7 +32,7 @@ class _LostItemsScreenState extends State<LostItemsScreen> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('Nenhum item encontrado'));
+            return Center(child: Text(S.of(context).nenhum_item_encontrado));
           } else {
             return LostItemAdapter(lostItems: snapshot.data!);
           }

@@ -1,0 +1,14 @@
+{
+    "todos_os_itens_perdidos": "All Lost Items",
+    "nenhum_item_encontrado": "No items found",
+    "buscar_itens_perdidos": "Search Lost Items",
+    "buscar_itens": "Search items...",
+    "error_searching_items": "Error searching items: {error}",
+    "homePageTitle": "Home Page",
+    "allPosts": "All Posts",
+    "searchPost": "Search Post",
+    "createPost": "Create Post",
+    "account": "Account"
+    
+    
+}
