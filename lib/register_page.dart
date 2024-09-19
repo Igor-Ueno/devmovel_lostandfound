@@ -1,7 +1,11 @@
 import 'package:devmovel_lostandfound/services/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'generated/l10n.dart';
+import 'homepage.dart';
 import 'models/account.dart';
+import 'models/account_response.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -22,7 +26,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   final double _spaceBetweenFields = 8;
 
-  Future<void> createAccount(String ra, String password, String name, String email, String phoneNumber, String photoUrl) async {
+  Future<Response> createAccount(String ra, String password, String name, String email, String phoneNumber, String photoUrl) async {
     Account account = Account(
       ra: ra,
       password: password,
@@ -32,13 +36,17 @@ class _RegisterPageState extends State<RegisterPage> {
       photoUrl: photoUrl
     );
 
+    Response res = Response("", 500);
+
     try {
-      final account_response = await AuthService().createAccount(account);
+      res = await AuthService().createAccount(account);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Error occurred when creating account: ${e.toString()}")),
       );
     }
+
+    return res;
   }
 
   String? formFieldValidator(String? fieldValue){
@@ -128,16 +136,28 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     const SizedBox(height: 8,),
                     FilledButton(
-                        onPressed: () {
+                        onPressed: () async {
+                          SharedPreferences prefs = await SharedPreferences.getInstance();
                           if (_formKey.currentState!.validate()) {
-                            createAccount(
+                            Response resp = await createAccount(
                                 _raController.text,
                                 _passwordController.text,
                                 _nameController.text,
                                 _emailController.text,
                                 _phoneNumberController.text,
                                 _photoUrlController.text);
-                            // Navigator.pop(context);
+                            if (resp.statusCode == 200) {
+                              await prefs.setString('token', AccountResponse.fromReqBody(resp.body).token);
+                              await prefs.setString('ra', AccountResponse.fromReqBody(resp.body).ra);
+                              await prefs.setString('name', AccountResponse.fromReqBody(resp.body).name);
+                              await prefs.setString('email', AccountResponse.fromReqBody(resp.body).email);
+                              await prefs.setString('phoneNumber', AccountResponse.fromReqBody(resp.body).phoneNumber);
+                              await prefs.setString('photoUrl', AccountResponse.fromReqBody(resp.body).photoUrl);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const HomePage(title: 'Lost and Found'))
+                              );
+                            }
                           }
                           else {
                             ScaffoldMessenger.of(context).showSnackBar(
