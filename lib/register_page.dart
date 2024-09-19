@@ -1,9 +1,11 @@
 import 'package:devmovel_lostandfound/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'generated/l10n.dart';
 import 'homepage.dart';
 import 'models/account.dart';
+import 'models/account_response.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -135,6 +137,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     const SizedBox(height: 8,),
                     FilledButton(
                         onPressed: () async {
+                          SharedPreferences prefs = await SharedPreferences.getInstance();
                           if (_formKey.currentState!.validate()) {
                             Response resp = await createAccount(
                                 _raController.text,
@@ -144,7 +147,12 @@ class _RegisterPageState extends State<RegisterPage> {
                                 _phoneNumberController.text,
                                 _photoUrlController.text);
                             if (resp.statusCode == 200) {
-                              // TODO: colocar no shared preferences
+                              await prefs.setString('token', AccountResponse.fromReqBody(resp.body).token);
+                              await prefs.setString('ra', AccountResponse.fromReqBody(resp.body).ra);
+                              await prefs.setString('name', AccountResponse.fromReqBody(resp.body).name);
+                              await prefs.setString('email', AccountResponse.fromReqBody(resp.body).email);
+                              await prefs.setString('phoneNumber', AccountResponse.fromReqBody(resp.body).phoneNumber);
+                              await prefs.setString('photoUrl', AccountResponse.fromReqBody(resp.body).photoUrl);
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(builder: (context) => const HomePage(title: 'Lost and Found'))

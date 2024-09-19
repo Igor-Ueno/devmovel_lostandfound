@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';  // Importa a classe gerada para localização
-import 'homepage.dart';
 import 'login_page.dart';
 
 class App extends StatelessWidget {
-  const App({super.key});
+  final StatefulWidget initialPage;
+  const App({super.key, required this.initialPage});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class App extends StatelessWidget {
         useMaterial3: true,
       ),
       // Configuração de internacionalização
-      localizationsDelegates: [
+      localizationsDelegates: const [
         S.delegate,  // Classe gerada automaticamente para strings localizadas
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -27,7 +27,7 @@ class App extends StatelessWidget {
       locale: null,
 
       // Defina a tela inicial, como LoginPage ou HomePage
-      home: const LoginPage(title: 'Login'),
+      home: initialPage,
     );
   }
 }

@@ -5,7 +5,7 @@ import '../models/login.dart';
 
 class AuthService {
   // static const String baseUrl = 'https://backend-devmovel.onrender.com/api/auth';
-  static const String baseUrl = 'http://192.168.15.10:5000/api/auth2';
+  static const String baseUrl = 'http://192.168.15.12:5000/api/auth2';
 
   Future<http.Response> createAccount(Account account) async {
     final response = await http.post(

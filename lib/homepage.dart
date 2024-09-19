@@ -3,6 +3,7 @@ import 'package:devmovel_lostandfound/lost_items_screen.dart';
 import 'package:devmovel_lostandfound/create_post_page.dart';
 import 'package:devmovel_lostandfound/search_post_page.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'generated/l10n.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,14 +16,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   final _pageOptions = [
     LostItemsScreen(),  
     SearchScreen(),
@@ -38,7 +31,14 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void signOut() {
+  Future<void> signOut() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove('token');
+    await prefs.remove('ra');
+    await prefs.remove('name');
+    await prefs.remove('email');
+    await prefs.remove('phoneNumber');
+    await prefs.remove('photoUrl');
     Navigator.pop(context);
   }
 
@@ -62,19 +62,19 @@ class _HomePageState extends State<HomePage> {
         onDestinationSelected: onItemTapped,
         destinations: <Widget>[
           NavigationDestination(
-            icon: Icon(Icons.list),
+            icon: const Icon(Icons.list),
             label: S.of(context).allPosts, // Usando a string localizada
           ),
           NavigationDestination(
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
             label: S.of(context).searchPost, // Usando a string localizada
           ),
           NavigationDestination(
-            icon: Icon(Icons.note_add),
+            icon: const Icon(Icons.note_add),
             label: S.of(context).createPost, // Usando a string localizada
           ),
           NavigationDestination(
-            icon: Icon(Icons.account_circle),
+            icon: const Icon(Icons.account_circle),
             label: S.of(context).account, // Usando a string localizada
           ),
         ],
