@@ -1,5 +1,9 @@
+import 'package:devmovel_lostandfound/models/account.dart';
+import 'package:devmovel_lostandfound/models/login.dart';
 import 'package:devmovel_lostandfound/register_page.dart';
+import 'package:devmovel_lostandfound/services/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 import 'homepage.dart';
 
@@ -17,8 +21,34 @@ class _LoginPageState extends State<LoginPage> {
   // late final MainViewModel viewModel;
 
   final _formKey = GlobalKey<FormState>();
-  final _RAController = TextEditingController();
+  final _raController = TextEditingController();
   final _passwordController = TextEditingController();
+
+  Future<Response> login(String ra, String password) async {
+    Login account = Login (
+        ra: ra,
+        password: password
+    );
+
+    Response res = Response("", 500);
+
+    try {
+      res = await AuthService().login(account);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Error occurred when logging in: ${e.toString()}")),
+      );
+    }
+
+    return res;
+  }
+
+  String? formFieldValidator(String? fieldValue){
+    if (fieldValue == null || fieldValue.isEmpty) {
+      return 'Required field';
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +71,8 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   children: [
                     TextFormField(
-                      controller: _RAController,
-                      // validator: (value) => validate(context, value),
+                      controller: _raController,
+                      validator: formFieldValidator,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'RA'
@@ -51,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(height: 16,),
                     TextFormField(
                       controller: _passwordController,
-                      // validator: (value) => validate(context, value),
+                      validator: formFieldValidator,
                       obscureText: true,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
@@ -60,11 +90,24 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     const SizedBox(height: 16,),
                     FilledButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const HomePage(title: 'Lost and Found'))
-                          );
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            Response resp = await login(_raController.text, _passwordController.text);
+                            if(resp.statusCode == 200) {
+                              // TODO: colocar no shared preferences
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const HomePage(title: 'Lost and Found'))
+                              );
+                            }
+                          }
+                          else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text(
+                                  'Please, fill in all fields of the form.')),
+                            );
+                          }
+                          FocusScope.of(context).unfocus();
                         },
                         child: const Text('Login')
                     ),

@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/account.dart';
-import '../models/lost_item.dart';
+import '../models/login.dart';
 
 class AuthService {
   // static const String baseUrl = 'https://backend-devmovel.onrender.com/api/auth';
-  static const String baseUrl = 'http://10.0.2.2:5000/api/auth';
+  static const String baseUrl = 'http://192.168.15.10:5000/api/auth2';
 
-  Future<LostItem> createAccount(Account account) async {
+  Future<http.Response> createAccount(Account account) async {
     final response = await http.post(
       Uri.parse('$baseUrl/register'),
       headers: {
@@ -23,22 +23,29 @@ class AuthService {
       }),
     );
 
-    // final response = await http.post(Uri.parse('http://10.0.2.2:5000/api/auth/login'),
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: jsonEncode({
-    //       'ra': '1',
-    //       'password': '1',
-    //     }),
-    // );
-
-    print("AUTHTEST [${response.statusCode}]: createAccount() - ${json.decode(response.body)}");
-
     if (response.statusCode == 200) {
-      return LostItem.fromJson(json.decode(response.body));
+      return response;
     } else {
       throw Exception('Failed to create account');
+    }
+  }
+
+  Future<http.Response> login(Login account) async {
+    http.Response response = await http.post(
+      Uri.parse('$baseUrl/login'),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({
+        'ra': account.ra,
+        'password': account.password,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      return response;
+    } else {
+      throw Exception('Failed to login');
     }
   }
 }

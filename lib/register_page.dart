@@ -1,6 +1,8 @@
 import 'package:devmovel_lostandfound/services/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'generated/l10n.dart';
+import 'homepage.dart';
 import 'models/account.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -22,7 +24,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   final double _spaceBetweenFields = 8;
 
-  Future<void> createAccount(String ra, String password, String name, String email, String phoneNumber, String photoUrl) async {
+  Future<Response> createAccount(String ra, String password, String name, String email, String phoneNumber, String photoUrl) async {
     Account account = Account(
       ra: ra,
       password: password,
@@ -32,13 +34,17 @@ class _RegisterPageState extends State<RegisterPage> {
       photoUrl: photoUrl
     );
 
+    Response res = Response("", 500);
+
     try {
-      final account_response = await AuthService().createAccount(account);
+      res = await AuthService().createAccount(account);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Error occurred when creating account: ${e.toString()}")),
       );
     }
+
+    return res;
   }
 
   String? formFieldValidator(String? fieldValue){
@@ -128,16 +134,22 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     const SizedBox(height: 8,),
                     FilledButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (_formKey.currentState!.validate()) {
-                            createAccount(
+                            Response resp = await createAccount(
                                 _raController.text,
                                 _passwordController.text,
                                 _nameController.text,
                                 _emailController.text,
                                 _phoneNumberController.text,
                                 _photoUrlController.text);
-                            // Navigator.pop(context);
+                            if (resp.statusCode == 200) {
+                              // TODO: colocar no shared preferences
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const HomePage(title: 'Lost and Found'))
+                              );
+                            }
                           }
                           else {
                             ScaffoldMessenger.of(context).showSnackBar(
