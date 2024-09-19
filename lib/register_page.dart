@@ -1,9 +1,10 @@
+import 'package:devmovel_lostandfound/services/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'generated/l10n.dart';
+import 'models/account.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key, required this.title});
-
-  final String title;
+  const RegisterPage({super.key});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -19,7 +20,33 @@ class _RegisterPageState extends State<RegisterPage> {
   final _phoneNumberController = TextEditingController();
   final _photoUrlController = TextEditingController();
 
-  final double _spaceBetweenFields = 10;
+  final double _spaceBetweenFields = 8;
+
+  Future<void> createAccount(String ra, String password, String name, String email, String phoneNumber, String photoUrl) async {
+    Account account = Account(
+      ra: ra,
+      password: password,
+      name: name,
+      email: email,
+      phoneNumber: phoneNumber,
+      photoUrl: photoUrl
+    );
+
+    try {
+      final account_response = await AuthService().createAccount(account);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Error occurred when creating account: ${e.toString()}")),
+      );
+    }
+  }
+
+  String? formFieldValidator(String? fieldValue){
+    if (fieldValue == null || fieldValue.isEmpty) {
+      return 'Required field';
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +54,7 @@ class _RegisterPageState extends State<RegisterPage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Theme.of(context).colorScheme.surface,
-        title: Text(widget.title),
+        title: Text(S.of(context).create_account_title),
       ),
       body: Center(
         child: Column(
@@ -36,77 +63,91 @@ class _RegisterPageState extends State<RegisterPage> {
             Form(
               key: _formKey,
               child: Padding(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(8),
                 child: Column(
                   children: [
-                    // const Text('Please, fill the fields to create a account.'),
-                    Text('Create your account',
-                      style: TextStyle(
-                          fontSize: 24,
-                          color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                    const SizedBox(height: 20,),
                     TextFormField(
                       controller: _raController,
                       // validator: (value) => validate(context, value),
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'RA'
+                          labelText: S.of(context).ra
                       ),
+                      validator: formFieldValidator,
                     ),
                     SizedBox(height: _spaceBetweenFields,),
                     TextFormField(
                       controller: _passwordController,
                       // validator: (value) => validate(context, value),
                       obscureText: true,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Password'
+                          labelText: S.of(context).password
                       ),
+                      validator: formFieldValidator,
                     ),
                     SizedBox(height: _spaceBetweenFields,),
                     TextFormField(
                       controller: _nameController,
                       // validator: (value) => validate(context, value),
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Name'
+                          labelText: S.of(context).name
                       ),
+                      validator: formFieldValidator,
                     ),
                     SizedBox(height: _spaceBetweenFields,),
                     TextFormField(
                       controller: _emailController,
                       // validator: (value) => validate(context, value),
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Email'
+                          labelText: S.of(context).email
                       ),
+                      validator: formFieldValidator,
                     ),
                     SizedBox(height: _spaceBetweenFields,),
                     TextFormField(
                       controller: _phoneNumberController,
                       // validator: (value) => validate(context, value),
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Phone number'
+                          labelText: S.of(context).phone_number
                       ),
+                      validator: formFieldValidator,
                     ),
                     SizedBox(height: _spaceBetweenFields,),
                     TextFormField(
                       controller: _photoUrlController,
                       // validator: (value) => validate(context, value),
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: "Photo's URL"
+                          labelText: S.of(context).photos_url
                       ),
+                      validator: formFieldValidator,
                     ),
-                    const SizedBox(height: 16,),
+                    const SizedBox(height: 8,),
                     FilledButton(
                         onPressed: () {
-                          Navigator.pop(context);
+                          if (_formKey.currentState!.validate()) {
+                            createAccount(
+                                _raController.text,
+                                _passwordController.text,
+                                _nameController.text,
+                                _emailController.text,
+                                _phoneNumberController.text,
+                                _photoUrlController.text);
+                            // Navigator.pop(context);
+                          }
+                          else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text(
+                                  'Please, fill in all fields of the form.')),
+                            );
+                          }
+                          FocusScope.of(context).unfocus();
                         },
-                        child: const Text('Create account')
+                        child: Text(S.of(context).create_account_button)
                     ),
                   ],
                 ),
