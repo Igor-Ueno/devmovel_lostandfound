@@ -32,16 +32,33 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Buscar itens perdidos"),
         "contact": MessageLookupByLibrary.simpleMessage("Contato"),
         "createPost": MessageLookupByLibrary.simpleMessage("Criar Post"),
+        "create_account_button":
+            MessageLookupByLibrary.simpleMessage("Criar conta"),
+        "create_account_error": MessageLookupByLibrary.simpleMessage(
+            "Erro durante a criação da conta"),
+        "create_account_title":
+            MessageLookupByLibrary.simpleMessage("Crie sua conta"),
         "create_post_button":
             MessageLookupByLibrary.simpleMessage("Criar post"),
+        "create_post_error": MessageLookupByLibrary.simpleMessage(
+            "Erro durante a criação do post"),
         "create_post_title":
             MessageLookupByLibrary.simpleMessage("Criar novo post"),
         "description": MessageLookupByLibrary.simpleMessage("Descrição"),
+        "email": MessageLookupByLibrary.simpleMessage("Email"),
         "error_searching_items": m0,
+        "field_warning":
+            MessageLookupByLibrary.simpleMessage("Campo obrigatório"),
+        "form_warning": MessageLookupByLibrary.simpleMessage(
+            "Por favor, preencha todos os campos"),
         "homePageTitle": MessageLookupByLibrary.simpleMessage("Página Inicial"),
+        "name": MessageLookupByLibrary.simpleMessage("Nome"),
         "nenhum_item_encontrado":
             MessageLookupByLibrary.simpleMessage("Nenhum item encontrado"),
+        "password": MessageLookupByLibrary.simpleMessage("Senha"),
+        "phone_number": MessageLookupByLibrary.simpleMessage("Celular"),
         "photos_url": MessageLookupByLibrary.simpleMessage("URL da foto"),
+        "ra": MessageLookupByLibrary.simpleMessage("RA"),
         "searchPost": MessageLookupByLibrary.simpleMessage("Buscar Post"),
         "title": MessageLookupByLibrary.simpleMessage("Título"),
         "todos_os_itens_perdidos":

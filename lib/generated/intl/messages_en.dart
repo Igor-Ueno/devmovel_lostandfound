@@ -33,16 +33,33 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Search Lost Items"),
         "contact": MessageLookupByLibrary.simpleMessage("Contact"),
         "createPost": MessageLookupByLibrary.simpleMessage("Create Post"),
+        "create_account_button":
+            MessageLookupByLibrary.simpleMessage("Create account"),
+        "create_account_error": MessageLookupByLibrary.simpleMessage(
+            "Error occurred when creating account"),
+        "create_account_title":
+            MessageLookupByLibrary.simpleMessage("Create your account"),
         "create_post_button":
             MessageLookupByLibrary.simpleMessage("Create post"),
+        "create_post_error": MessageLookupByLibrary.simpleMessage(
+            "Error occurred when creating post"),
         "create_post_title":
             MessageLookupByLibrary.simpleMessage("Create neww post"),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
+        "email": MessageLookupByLibrary.simpleMessage("Email"),
         "error_searching_items": m0,
+        "field_warning": MessageLookupByLibrary.simpleMessage("Required field"),
+        "form_warning": MessageLookupByLibrary.simpleMessage(
+            "Please, fill in all fields of the form"),
         "homePageTitle": MessageLookupByLibrary.simpleMessage("Home Page"),
+        "name": MessageLookupByLibrary.simpleMessage("Name"),
         "nenhum_item_encontrado":
             MessageLookupByLibrary.simpleMessage("No items found"),
-        "photos_url": MessageLookupByLibrary.simpleMessage("Photo\'s URL"),
+        "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "phone_number": MessageLookupByLibrary.simpleMessage("Phone number"),
+        "photos_url":
+            MessageLookupByLibrary.simpleMessage("URL of profile photo"),
+        "ra": MessageLookupByLibrary.simpleMessage("RA"),
         "searchPost": MessageLookupByLibrary.simpleMessage("Search Post"),
         "title": MessageLookupByLibrary.simpleMessage("Title"),
         "todos_os_itens_perdidos":

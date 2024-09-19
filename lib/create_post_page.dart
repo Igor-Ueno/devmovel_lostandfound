@@ -23,6 +23,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
 
 
   var token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZhYTgxN2IwNDUyZDBjOWY4NTZiZmM1In0sImlhdCI6MTcyNjY5NjE3NiwiZXhwIjoxNzI2Njk5Nzc2fQ.arvDrEafGd6OLAfsKe74jqj7xMnT6ngPa_bH2UJ6DCk';
+  // var token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZlYmJiMmZjYTE3M2U2YmZhZTVlOGRiIn0sImlhdCI6MTcyNjcyNDkxMiwiZXhwIjoxNzI2NzI4NTEyfQ.lkrSZK33yt1Sk94SQ2Dc4aKneq8JrkeB3hKhifnXtYY';
 
   Future<void> createPost(String title, String description, String contact, String photoUrl) async {
     LostItem lostItem = LostItem(
@@ -35,9 +36,16 @@ class _CreatePostPageState extends State<CreatePostPage> {
       final lostItem_response = await PostsService().createPost(token, lostItem);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Error occurred when creating post: ${e.toString()}")),
+        SnackBar(content: Text("${S.of(context).create_post_error}: ${e.toString()}")),
       );
     }
+  }
+
+  String? formFieldValidator(String? fieldValue){
+    if (fieldValue == null || fieldValue.isEmpty) {
+      return S.of(context).field_warning;
+    }
+    return null;
   }
 
   @override
@@ -65,6 +73,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
                             border: OutlineInputBorder(),
                             labelText: S.of(context).title
                         ),
+                        validator: formFieldValidator,
                       ),
                       SizedBox(height: _spaceBetweenFields,),
                       TextFormField(
@@ -74,6 +83,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
                             border: OutlineInputBorder(),
                             labelText: S.of(context).description
                         ),
+                        validator: formFieldValidator,
                       ),
                       SizedBox(height: _spaceBetweenFields,),
                       TextFormField(
@@ -83,6 +93,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
                             border: OutlineInputBorder(),
                             labelText: S.of(context).contact
                         ),
+                        validator: formFieldValidator,
                       ),
                       SizedBox(height: _spaceBetweenFields,),
                       TextFormField(
@@ -92,21 +103,30 @@ class _CreatePostPageState extends State<CreatePostPage> {
                             border: OutlineInputBorder(),
                             labelText: S.of(context).photos_url
                         ),
+                        validator: formFieldValidator,
                       ),
                       const SizedBox(height: 16,),
                       FilledButton(
-                          onPressed: () => {
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
                               createPost(
                                   _titleController.text,
                                   _descriptionController.text,
                                   _contactController.text,
-                                  _photoUrlController.text),
+                                  _photoUrlController.text);
                               // _titleController.clear(),
                               // _descriptionController.clear(),
                               // _contactController.clear(),
                               // _photoUrlController.clear(),
-                              FocusScope.of(context).unfocus(),
-                            },
+                            }
+                            else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text(
+                                    S.of(context).form_warning)),
+                              );
+                            }
+                            FocusScope.of(context).unfocus();
+                          },
                           child: Text(S.of(context).create_post_button)
                       ),
                     ],

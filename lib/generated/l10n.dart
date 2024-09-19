@@ -200,10 +200,10 @@ class S {
     );
   }
 
-  /// `Photo's URL`
+  /// `URL of profile photo`
   String get photos_url {
     return Intl.message(
-      'Photo\'s URL',
+      'URL of profile photo',
       name: 'photos_url',
       desc: '',
       args: [],
@@ -215,6 +215,116 @@ class S {
     return Intl.message(
       'Create post',
       name: 'create_post_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred when creating post`
+  String get create_post_error {
+    return Intl.message(
+      'Error occurred when creating post',
+      name: 'create_post_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create your account`
+  String get create_account_title {
+    return Intl.message(
+      'Create your account',
+      name: 'create_account_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `RA`
+  String get ra {
+    return Intl.message(
+      'RA',
+      name: 'ra',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get name {
+    return Intl.message(
+      'Name',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone number`
+  String get phone_number {
+    return Intl.message(
+      'Phone number',
+      name: 'phone_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create account`
+  String get create_account_button {
+    return Intl.message(
+      'Create account',
+      name: 'create_account_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred when creating account`
+  String get create_account_error {
+    return Intl.message(
+      'Error occurred when creating account',
+      name: 'create_account_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Required field`
+  String get field_warning {
+    return Intl.message(
+      'Required field',
+      name: 'field_warning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please, fill in all fields of the form`
+  String get form_warning {
+    return Intl.message(
+      'Please, fill in all fields of the form',
+      name: 'form_warning',
       desc: '',
       args: [],
     );

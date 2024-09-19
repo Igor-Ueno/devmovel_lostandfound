@@ -15,5 +15,17 @@
     "description":"Descrição",
     "contact":"Contato",
     "photos_url":"URL da foto",
-    "create_post_button":"Criar post"
+    "create_post_button":"Criar post",
+    "create_post_error":"Erro durante a criação do post",
+    "create_account_title":"Crie sua conta",
+    "ra":"RA",
+    "password":"Senha",
+    "name":"Nome",
+    "email":"Email",
+    "phone_number":"Celular",
+    "photos_url":"URL da foto",
+    "create_account_button":"Criar conta",
+    "create_account_error":"Erro durante a criação da conta",
+    "field_warning":"Campo obrigatório",
+    "form_warning":"Por favor, preencha todos os campos"
 }

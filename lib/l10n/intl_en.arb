@@ -14,6 +14,18 @@
     "title":"Title",
     "description":"Description",
     "contact":"Contact",
-    "photos_url":"Photo's URL",
-    "create_post_button":"Create post"
+    "photos_url":"URL of photo",
+    "create_post_button":"Create post",
+    "create_post_error":"Error occurred when creating post",
+    "create_account_title":"Create your account",
+    "ra":"RA",
+    "password":"Password",
+    "name":"Name",
+    "email":"Email",
+    "phone_number":"Phone number",
+    "photos_url":"URL of profile photo",
+    "create_account_button":"Create account",
+    "create_account_error":"Error occurred when creating account",
+    "field_warning":"Required field",
+    "form_warning":"Please, fill in all fields of the form"
 }
