@@ -1,5 +1,4 @@
 {
-<<<<<<< Updated upstream
     "todos_os_itens_perdidos": "All Lost Items",
     "nenhum_item_encontrado": "No items found",
     "buscar_itens_perdidos": "Search Lost Items",
@@ -9,11 +8,7 @@
     "allPosts": "All Posts",
     "searchPost": "Search Post",
     "createPost": "Create Post",
-    "account": "Account"
-    
-    
-}
-=======
+    "account": "Account",
     "create_post_title":"Create neww post",
     "title":"Title",
     "description":"Description",
@@ -21,4 +16,3 @@
     "photos_url":"Photo's URL",
     "create_post_button":"Create post"
 }
->>>>>>> Stashed changes
