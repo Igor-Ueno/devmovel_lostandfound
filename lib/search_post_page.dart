@@ -41,6 +41,8 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(S.of(context).buscar_itens_perdidos),
+        centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       body: Column(
         children: [

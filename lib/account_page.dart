@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'generated/l10n.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({super.key});
@@ -20,8 +21,13 @@ class _AccountPageState extends State<AccountPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: const Center(
-          child: Text('Account page'),
+      appBar: AppBar(
+        title: Text(S.of(context).account_title),
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+      ),
+        body: Center(
+          child: Text(S.of(context).account_title),
         ),
     );
   }

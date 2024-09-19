@@ -150,6 +150,16 @@ class S {
     );
   }
 
+  /// `Personal account`
+  String get account_title {
+    return Intl.message(
+      'Personal account',
+      name: 'account_title',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Create neww post`
   String get create_post_title {
     return Intl.message(

@@ -23,6 +23,8 @@ class _LostItemsScreenState extends State<LostItemsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(S.of(context).todos_os_itens_perdidos),
+        centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       body: FutureBuilder<List<LostItem>>(
         future: futureLostItems,

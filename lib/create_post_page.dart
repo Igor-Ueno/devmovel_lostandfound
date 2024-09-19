@@ -1,5 +1,4 @@
 import 'package:devmovel_lostandfound/services/posts_service.dart';
-import 'package:devmovel_lostandfound/viewmodels/post_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'generated/l10n.dart';
 import 'models/lost_item.dart';
@@ -22,7 +21,6 @@ class _CreatePostPageState extends State<CreatePostPage> {
 
   final double _spaceBetweenFields = 10;
 
-  late final PostViewModel viewModel;
 
   var token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZhYTgxN2IwNDUyZDBjOWY4NTZiZmM1In0sImlhdCI6MTcyNjY5NjE3NiwiZXhwIjoxNzI2Njk5Nzc2fQ.arvDrEafGd6OLAfsKe74jqj7xMnT6ngPa_bH2UJ6DCk';
 
