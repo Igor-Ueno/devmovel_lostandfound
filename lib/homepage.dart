@@ -19,8 +19,8 @@ class _HomePageState extends State<HomePage> {
   final _pageOptions = [
     LostItemsScreen(),  
     SearchScreen(),
-    CreatePostPage(),
-    AccountPage()
+    const CreatePostPage(),
+    const AccountPage()
   ];
 
   int currentPageIndex = 0;
