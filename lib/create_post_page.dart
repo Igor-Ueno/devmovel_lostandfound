@@ -4,18 +4,13 @@ import 'package:flutter/material.dart';
 import 'generated/l10n.dart';
 import 'models/lost_item.dart';
 
-class CreatePostPagePage extends StatefulWidget {
-  const CreatePostPagePage({super.key});
 class CreatePostPage extends StatefulWidget {
   const CreatePostPage({super.key});
 
   @override
-  State<CreatePostPagePage> createState() => _CreatePostPagePageState();
-
   State<CreatePostPage> createState() => _CreatePostPageState();
 }
 
-class _CreatePostPagePageState extends State<CreatePostPagePage> {
 class _CreatePostPageState extends State<CreatePostPage> {
   late Future<LostItem> lostItemPost;
 
@@ -50,8 +45,6 @@ class _CreatePostPageState extends State<CreatePostPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const Center(
-        child: Text('Create post page'),
       appBar: AppBar(
         title: Text(S.of(context).create_post_title),
         centerTitle: true,

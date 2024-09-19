@@ -29,12 +29,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "buscar_itens": MessageLookupByLibrary.simpleMessage("Buscar itens..."),
         "buscar_itens_perdidos":
             MessageLookupByLibrary.simpleMessage("Buscar itens perdidos"),
+        "contact": MessageLookupByLibrary.simpleMessage("Contato"),
         "createPost": MessageLookupByLibrary.simpleMessage("Criar Post"),
+        "create_post_button":
+            MessageLookupByLibrary.simpleMessage("Criar post"),
+        "create_post_title":
+            MessageLookupByLibrary.simpleMessage("Criar novo post"),
+        "description": MessageLookupByLibrary.simpleMessage("Descrição"),
         "error_searching_items": m0,
         "homePageTitle": MessageLookupByLibrary.simpleMessage("Página Inicial"),
         "nenhum_item_encontrado":
             MessageLookupByLibrary.simpleMessage("Nenhum item encontrado"),
+        "photos_url": MessageLookupByLibrary.simpleMessage("URL da foto"),
         "searchPost": MessageLookupByLibrary.simpleMessage("Buscar Post"),
+        "title": MessageLookupByLibrary.simpleMessage("Título"),
         "todos_os_itens_perdidos":
             MessageLookupByLibrary.simpleMessage("Todos os itens perdidos")
       };

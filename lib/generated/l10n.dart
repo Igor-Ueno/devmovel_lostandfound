@@ -50,79 +50,46 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-<<<<<<< Updated upstream
   /// `All Lost Items`
   String get todos_os_itens_perdidos {
     return Intl.message(
       'All Lost Items',
       name: 'todos_os_itens_perdidos',
-=======
-  /// `Create neww post`
-  String get create_post_title {
-    return Intl.message(
-      'Create neww post',
-      name: 'create_post_title',
->>>>>>> Stashed changes
       desc: '',
       args: [],
     );
   }
 
-<<<<<<< Updated upstream
   /// `No items found`
   String get nenhum_item_encontrado {
     return Intl.message(
       'No items found',
       name: 'nenhum_item_encontrado',
-=======
-  /// `Title`
-  String get title {
-    return Intl.message(
-      'Title',
-      name: 'title',
->>>>>>> Stashed changes
       desc: '',
       args: [],
     );
   }
 
-<<<<<<< Updated upstream
   /// `Search Lost Items`
   String get buscar_itens_perdidos {
     return Intl.message(
       'Search Lost Items',
       name: 'buscar_itens_perdidos',
-=======
-  /// `Description`
-  String get description {
-    return Intl.message(
-      'Description',
-      name: 'description',
->>>>>>> Stashed changes
       desc: '',
       args: [],
     );
   }
 
-<<<<<<< Updated upstream
   /// `Search items...`
   String get buscar_itens {
     return Intl.message(
       'Search items...',
       name: 'buscar_itens',
-=======
-  /// `Contact`
-  String get contact {
-    return Intl.message(
-      'Contact',
-      name: 'contact',
->>>>>>> Stashed changes
       desc: '',
       args: [],
     );
   }
 
-<<<<<<< Updated upstream
   /// `Error searching items: {error}`
   String error_searching_items(Object error) {
     return Intl.message(
@@ -138,19 +105,11 @@ class S {
     return Intl.message(
       'Home Page',
       name: 'homePageTitle',
-=======
-  /// `Photo's URL`
-  String get photos_url {
-    return Intl.message(
-      'Photo\'s URL',
-      name: 'photos_url',
->>>>>>> Stashed changes
       desc: '',
       args: [],
     );
   }
 
-<<<<<<< Updated upstream
   /// `All Posts`
   String get allPosts {
     return Intl.message(
@@ -186,13 +145,66 @@ class S {
     return Intl.message(
       'Account',
       name: 'account',
-=======
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create neww post`
+  String get create_post_title {
+    return Intl.message(
+      'Create neww post',
+      name: 'create_post_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Title`
+  String get title {
+    return Intl.message(
+      'Title',
+      name: 'title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get description {
+    return Intl.message(
+      'Description',
+      name: 'description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact`
+  String get contact {
+    return Intl.message(
+      'Contact',
+      name: 'contact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Photo's URL`
+  String get photos_url {
+    return Intl.message(
+      'Photo\'s URL',
+      name: 'photos_url',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Create post`
   String get create_post_button {
     return Intl.message(
       'Create post',
       name: 'create_post_button',
->>>>>>> Stashed changes
       desc: '',
       args: [],
     );

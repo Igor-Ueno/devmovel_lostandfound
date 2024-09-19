@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
   final _pageOptions = [
     LostItemsScreen(),  
     SearchScreen(),
-    CreatePostPagePage(),
+    CreatePostPage(),
     AccountPage()
   ];
 
